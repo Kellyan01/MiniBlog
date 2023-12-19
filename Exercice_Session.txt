@@ -1,0 +1,32 @@
+EXERCICE : Mini-site de blog
+
+1) Créer une BDD blog qui contient 2 tables :
+- une table users ayant les champs : id (la clé primaire), last_name, first_name, email, psswrd (varchar de 150)
+- une table articles, associée à la table users, ayant pour champs : id (la clé primaire), title (varchar de 250), abstract(varchar 250), content (de type TEXT), id_user (la clé étrangère qui l'associe à la table users)
+
+2) Pour la partie web, il nous faut :
+
+A la Racine du site :
+(NOTE : chaque Controller débute par la fonction session_start() pour activer la superglobal $_SESSION)
+- un fichier deco.php : le Controller qui déconnecte l'utilisateur et le redirige vers l'Accueil (cf la fonction header() sur php.net)
+- un fichier index.php : le Controller qui gère la page d'accueil. On y verra tous les articles avec leur title et leur abstract (pas leur content)
+- un fichier account.php : le Controller qui gère la page profil d'un user. On y verra ses informations
+- un fichier blog.php : le Controller qui gère la liste des articles du user connecté, sur le même modèle que l'index.php. Il appellera le fichier view_article.php pour la Vue.
+- un fichier newarticle.php : le Controller qui gère la création d'un nouvel article
+- un fichier signin.php : le Controller qui gère la création d'un user
+- un fichier login.php : le Controller qui gère la connexion d'un user
+
+Dans un dossier View :
+- un fichier view_articles.php : la Vue qui affiche la page d'accueil
+- un fichier view_user.php : la Vue qui affiche les informations d'un user
+- un fichier view_create_article.php : la Vue qui affiche le formulaire de création d'article
+- un fchier view_create_user.php : la Vue qui affiche le formulaire de création d'un utilisateur
+- un fichier view_login_user.php : la Vue qui affiche le formulaire de connexion d'un utilisateur
+- un fichier header.php : la Vue qui contient la navigation de notre site. Dans chaque Controller, lorsque l'utilisateur n'est pas connecté, le menu affiche les liens Accueil - Connexion - Inscription. Lorsque l'utilisateur est connecté, le menu affiche les liens Accueil - Mon Blog - Créer un Article - Mon Compte - Déconnexion
+
+Dans un dossier Model : 
+- un fichier model_article.php : le model qui gère les articles
+- un fichier model_user.php : le model qui gère les users
+
+Dans un dossier Utils :
+- un fichier bdd.php : le fichier utilitaire possédant notre objet de connection à la BDD
